@@ -418,12 +418,12 @@ class _GradientAppBarState extends State<GradientAppBar> {
     IconThemeData actionsIconTheme = widget.actionsIconTheme ??
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
-    TextStyle centerStyle = widget.textTheme?.title ??
-        appBarTheme.textTheme?.title ??
-        themeData.primaryTextTheme.title;
-    TextStyle sideStyle = widget.textTheme?.body1 ??
-        appBarTheme.textTheme?.body1 ??
-        themeData.primaryTextTheme.body1;
+    TextStyle centerStyle = widget.textTheme?.headline6 ??
+        appBarTheme.titleTextStyle ??
+        themeData.primaryTextTheme.headline6;
+    TextStyle sideStyle = widget.textTheme?.headline6 ??
+        appBarTheme.titleTextStyle ??
+        themeData.primaryTextTheme.headline6;
 
     if (widget.toolbarOpacity != 1.0) {
       final double opacity =

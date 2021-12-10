@@ -734,9 +734,9 @@ class _SliverGradientAppBarDelegate extends SliverPersistentHeaderDelegate {
     //    1   |    0     |        1       ||  1.0
     //    1   |    1     |        0       ||  1.0
     //    1   |    1     |        1       ||  fade
-    final double toolbarOpacity = !pinned || (floating && bottom != null)
+    final double toolbarOpacity = (!pinned || (floating && bottom != null)
         ? ((visibleMainHeight - _bottomHeight) / kToolbarHeight).clamp(0.0, 1.0)
-        : 1.0;
+        : 1.0).toDouble();
 
     final Widget appBar = FlexibleSpaceBar.createSettings(
       minExtent: minExtent,
@@ -768,7 +768,7 @@ class _SliverGradientAppBarDelegate extends SliverPersistentHeaderDelegate {
         shape: shape,
         toolbarOpacity: toolbarOpacity,
         bottomOpacity:
-            pinned ? 1.0 : (visibleMainHeight / _bottomHeight).clamp(0.0, 1.0),
+            (pinned ? 1.0 : (visibleMainHeight / _bottomHeight).clamp(0.0, 1.0)).toDouble(),
       ),
     );
     return floating ? _FloatingGradientAppBar(child: appBar) : appBar;
@@ -1174,7 +1174,6 @@ class _SliverGradientAppBarState extends State<SliverGradientAppBar>
   void _updateSnapConfiguration() {
     if (widget.snap && widget.floating) {
       _snapConfiguration = FloatingHeaderSnapConfiguration(
-        vsync: this,
         curve: Curves.easeOut,
         duration: const Duration(milliseconds: 200),
       );
